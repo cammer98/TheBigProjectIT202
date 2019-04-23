@@ -1,0 +1,20 @@
+@import "@material/drawer/mdc-drawer";
+@import "@material/list/mdc-list";
+@import "@material/card/mdc-card";
+.mdc-card {
+    height: 500px;
+    width: 500px;
+ }
+.homeBody{
+    background-image: url("towers.jpg"); 
+}
+.screen2Body{
+    background-image: url("hospital.jpg");
+}
+background-image{
+    opacity = .5;
+}
+#map {
+            height: 700px;  /* The height is 400 pixels */
+            width: 100%;  /* The width is the width of the web page */
+         }    
