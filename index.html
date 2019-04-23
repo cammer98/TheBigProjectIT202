@@ -85,6 +85,7 @@
   <div class="content" id="map">
       <script>
       var map, infoWindow;
+      var markers = [];
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 41.8781, lng: -87.6298},
@@ -119,6 +120,58 @@
                               'Error: The Geolocation service failed.' :
                               'Error: Your browser doesn\'t support geolocation.');
         infoWindow.open(map);
+          
+        var police_endpoint = "https://data.cityofchicago.org/resource/9rg7-mz9y.json";
+          $.get(police_endpoint, function(response) {
+            console.log("in data callback");
+            var data = response;
+            createMarkers(map, data );
+          });
+        
+        function createMarkers (map, data) {
+        console.log(data);
+        $.each(data, function(i,v) {
+//         icon = {
+//               url: "./policeIcon";
+//               scale: .1;
+//           }
+//        
+          var pinIcon = new google.maps.MarkerImage(
+            "./policeIcon.png",
+            null, /* size is determined at runtime */
+            null, /* origin is 0,0 */
+            null, /* anchor is bottom center of the scaled image */
+            new google.maps.Size(60, 60)
+        );  
+          var location = {lat: parseFloat(v.latitude), lng: parseFloat(v.longitude) }
+          var marker = new google.maps.Marker({position: location, map: map, icon: pinIcon
+        });
+
+          markers.push(marker);
+            
+          var infowindow = new google.maps.InfoWindow({
+            content: "Address: " + v.address
+          });
+
+          marker.addListener('click', function() {
+            infowindow.open(map, marker);
+          });
+
+        });
+
+  }
+      function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
+        }
+      }
+      function clearMarkers() {
+        setMapOnAll(null);
+      }
+      function deleteMarkers() {
+        clearMarkers();
+        markers = [];
+      }
       } </script>
 <!--       <button class="btn btn-default" id="askButton">Ask for location</button>
 
