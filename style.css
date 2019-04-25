@@ -1,10 +1,10 @@
-@import "@material/drawer/mdc-drawer";
+/* @import "@material/drawer/mdc-drawer";
 @import "@material/list/mdc-list";
 @import "@material/card/mdc-card";
 @import "@material/list/mdc-list";
 @import "@material/menu-surface/mdc-menu-surface";
 @import "@material/menu/mdc-menu";
-@import "@material/select/mdc-select";
+@import "@material/select/mdc-select"; */
 
 .mdc-card {
     height: 500px;
@@ -20,6 +20,7 @@ background-image{
     opacity = .5;
 }
 #map {
-            height: 700px;  /* The height is 400 pixels */
-            width: 100%;  /* The width is the width of the web page */
+            margin-top: 20px;
+            height: 500px;  /* The height is 400 pixels */
+/*             width: 100%;  /* The width is the width of the web page */ */
          }    
