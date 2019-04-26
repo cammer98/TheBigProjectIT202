@@ -7,6 +7,7 @@
     <link rel='manifest' href='./manifest.json'>
     <link href="https://unpkg.com/material-components-web@1.1.1/dist/material-components-web.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
     <meta name="google-signin-client_id" content="455879692718-31a814ua0ch6tal2errkrtf4976ckq1h.apps.googleusercontent.com">
@@ -21,6 +22,7 @@
 			margin: 1em;
 		}
 	</style>
+    
 
 </head>
 
@@ -82,10 +84,19 @@
     
   <div class="content" id="home">
     <body class="homeBody">
-       <img src="./logo.jpg" id="logo" align="middle" class="center"> 
-        hello
-       <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-      </body>
+       <img src="./logo.jpg" id="logo" align="middle" class="center"> <br><br><br>
+        <div class="white-box">
+            <body class="mdc-typography">
+              <h1 class="mdc-typography--headline2">Mission</h1>
+            
+              <p class="mdc-typography--body1"> The purpose of the Chicago Safety App...</p><br>
+              <h1 class="mdc-typography--headline2">My Story</h1>
+            
+              <p class="mdc-typography--body1"> The purpose of the Chicago Safety App...</p>
+                </body>
+        </div>
+        </body>
+      
       
   </div>
   <div class="content" id="screen2">
@@ -93,6 +104,37 @@
         This is screen 2
       
     </body>
+      <script>
+          //
+          // Define your database
+          //
+          var db = new Dexie("friend_database");
+          db.version(1).stores({
+              friends: 'name,shoeSize'
+          });
+
+          //
+          // Put some data into it
+          //
+          db.friends.put({name: "Nicolas", shoeSize: 6}).then (function(){
+              //
+              // Then when data is stored, read from it
+              //
+              return db.friends.get('Nicolas');
+          }).then(function (friend) {
+              //
+              // Display the result
+              //
+              alert ("Nicolas has shoe size " + friend.shoeSize);
+          }).catch(function(error) {
+             //
+             // Finally don't forget to catch any error
+             // that could have happened anywhere in the
+             // code blocks above.
+             //
+             alert ("Ooops: " + error);
+          });
+      </script>
   </div>
   <div class="content" id="mapPage">
      <body>
