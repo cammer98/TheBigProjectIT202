@@ -8,3 +8,7 @@ select.listen('MDCSelect:change', () => {
 
 import {MDCDrawer} from "@material/drawer";
 const drawer = MDCDrawer.attachTo(document.querySelector('.mdc-drawer'));
+
+import {MDCTextField} from '@material/textfield';
+
+const textField = new MDCTextField(document.querySelector('.mdc-text-field'));

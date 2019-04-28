@@ -23,6 +23,27 @@
 		}
 	</style>
     
+    
+    <script>
+      // Define your database
+          //
+          var db_name, db_email, db_feedback;
+          var db = new Dexie("feedback_database");
+          console.log("Database Created");
+          db.version(1).stores({
+              submission: 'name, email,feedback'
+          });
+         db.submission.put({name: "Cam", email: "cam@gmail.com", feedback: "Good app"}).then (function(){
+              //
+              // Then when data is stored, read from it
+              //
+              return db.submission.get('Cam');
+          });
+          
+          
+          
+          
+    </script>
 
 </head>
 
@@ -73,10 +94,10 @@
         <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#screen2">Screen 2</a>
+        <a class="nav-link" href="#mapPage">Havens</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#mapPage">Screen 3</a>
+        <a class="nav-link" href="#feedback_page">Feedback</a>
       </li>
     </ul>
   </div>
@@ -99,41 +120,61 @@
       
       
   </div>
-  <div class="content" id="screen2">
+  <div class="content" id="feedback_page">
     <body class ="screen2Body">
-        This is screen 2
+        Name:<br>
+        <div class="mdc-text-field">
+          <input type="text" id="name" class="mdc-text-field__input">
+          <label class="mdc-floating-label" for="my-text-field"></label>
+          <div class="mdc-line-ripple"></div>
+        </div><br>
+        Email:<br>
+        <div class="mdc-text-field">
+          <input type="text" id="email" class="mdc-text-field__input">
+          <label class="mdc-floating-label" for="my-text-field"></label>
+          <div class="mdc-line-ripple"></div>
+        </div><br>
+        Feedback: <br>
+        <div class="mdc-text-field mdc-text-field--textarea">
+          <textarea id="feedback_text" class="mdc-text-field__input " rows="8" cols="40" style="background-color:lightgray;"></textarea>
+          <div class="mdc-notched-outline">
+            <div class="mdc-notched-outline__leading"></div>
+            <div class="mdc-notched-outline__notch">
+                
+              <label for="textarea" class="mdc-floating-label"></label>
+            </div>
+            <div class="mdc-notched-outline__trailing"></div>
+          </div>
+        </div>
+        <br><button class="foo-button mdc-button mdc-button--raised" id="feedback_button">Submit</button>
       
     </body>
       <script>
-          //
-          // Define your database
-          //
-          var db = new Dexie("friend_database");
-          db.version(1).stores({
-              friends: 'name,shoeSize'
-          });
-
-          //
-          // Put some data into it
-          //
-          db.friends.put({name: "Nicolas", shoeSize: 6}).then (function(){
-              //
-              // Then when data is stored, read from it
-              //
-              return db.friends.get('Nicolas');
-          }).then(function (friend) {
-              //
-              // Display the result
-              //
-              alert ("Nicolas has shoe size " + friend.shoeSize);
-          }).catch(function(error) {
-             //
-             // Finally don't forget to catch any error
-             // that could have happened anywhere in the
-             // code blocks above.
-             //
-             alert ("Ooops: " + error);
-          });
+         $("#feedback_button").on("click", function() {
+              
+              var db_name = $("#name").val();
+              var db_email = $("#email").val();
+              var db_feedback = $("#feedback_text").val();
+              console.log(db_name);
+              db.submission.put({name: db_name , email: db_email , feedback: db_feedback}).then (function(){
+                  //
+                  // Then when data is stored, read from it
+                  //
+                  return db.submission.get(db_name);
+              }).then(function (submission) {
+                  //
+                  // Display the result
+                  //
+                  alert ("Thank you for the submission  " + submission.name);
+              }).catch(function(error) {
+                 //
+                 // Finally don't forget to catch any error
+                 // that could have happened anywhere in the
+                 // code blocks above.
+                 //
+                 alert ("Ooops: " + error);
+              });
+          });  
       </script>
   </div>
   <div class="content" id="mapPage">
