@@ -12,3 +12,7 @@ const drawer = MDCDrawer.attachTo(document.querySelector('.mdc-drawer'));
 import {MDCTextField} from '@material/textfield';
 
 const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
+
+import {MDCTabBar} from '@material/tab-bar';
+
+const tabBar = new MDCTabBar(document.querySelector('.mdc-tab-bar'));

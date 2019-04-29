@@ -33,7 +33,7 @@
           db.version(1).stores({
               submission: 'name, email,feedback'
           });
-         db.submission.put({name: "Cam", email: "cam@gmail.com", feedback: "Good app"}).then (function(){
+         db.submission.put({name: "Cam", email: "cammer98@gmail.com", feedback: "Good app"}).then (function(){
               //
               // Then when data is stored, read from it
               //
@@ -83,7 +83,45 @@
   <div class="mdc-drawer-app-content">
     App Content
   </div> -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="mdc-tab-bar" role="tablist">
+  <div class="mdc-tab-scroller white-box">
+    <div class="mdc-tab-scroller__scroll-area">
+      <div class="mdc-tab-scroller__scroll-content">
+        <button class="mdc-tab mdc-tab--active" href="#home" role="tab" aria-selected="true" tabindex="0">
+          <span class="mdc-tab__content">
+<!--             <span class="mdc-tab__icon material-icons" aria-hidden="true">favorite</span> -->
+            <span class="mdc-tab__text-label">Home</span>
+          </span>
+          <span class="mdc-tab-indicator mdc-tab-indicator--active">
+            <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+          </span>
+          <span class="mdc-tab__ripple"></span>
+        </button>
+           <button class="mdc-tab mdc-tab--active" href="#map_page" role="tab" aria-selected="true" tabindex="1">
+          <span class="mdc-tab__content">
+<!--             <span class="mdc-tab__icon material-icons" aria-hidden="true">favorite</span> -->
+            <span class="mdc-tab__text-label">Havens</span>
+          </span>
+          <span class="mdc-tab-indicator mdc-tab-indicator--active">
+            <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+          </span>
+          <span class="mdc-tab__ripple"></span>
+        </button>
+           <button class="mdc-tab mdc-tab--active" href="#feedback_page" role="tab" aria-selected="true" tabindex="2">
+          <span class="mdc-tab__content">
+<!--             <span class="mdc-tab__icon material-icons" aria-hidden="true">favorite</span> -->
+            <span class="mdc-tab__text-label">Feedback</span>
+          </span>
+          <span class="mdc-tab-indicator mdc-tab-indicator--active">
+            <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+          </span>
+          <span class="mdc-tab__ripple"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="#">Navbar</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -101,7 +139,7 @@
       </li>
     </ul>
   </div>
-  </nav>
+  </nav> -->
     
   <div class="content" id="home">
     <body class="homeBody">
@@ -110,10 +148,15 @@
             <body class="mdc-typography">
               <h1 class="mdc-typography--headline2">Mission</h1>
             
-              <p class="mdc-typography--body1"> The purpose of the Chicago Safety App...</p><br>
+              <p class="mdc-typography--body1"> The purpose of the Chicago Safety App is to provide a platform for anyone
+                who is living in Chicago, or visiting, to find a safe place. With the click of a button, a user can easily find any
+                police station or health clinic near their location. These safe places are known as havens.</p><br>
               <h1 class="mdc-typography--headline2">My Story</h1>
             
-              <p class="mdc-typography--body1"> The purpose of the Chicago Safety App...</p>
+              <p class="mdc-typography--body1"> As I grew older witnessed many of my friends and family fall victim to senseless acts of violence. 
+                I know an app cannot easily fix this problem, but I do believe these violent acts can be prevented if people are around a safe area. There
+                are also may women who are survivers of sexual assault that do not know what to do after their assault. The Chicago Safety App can show them 
+                  where to start.</p>
                 </body>
         </div>
         </body>
@@ -122,7 +165,10 @@
   </div>
   <div class="content" id="feedback_page">
     <body class ="screen2Body">
-        Name:<br>
+        <div class="white-box">
+            <p class="mdc-typography--body1">Your feedback can help Chicago become a safer city. Please submit any questions, complaints, or reccomendations below.</p>
+        </div>
+       Name:<br>
         <div class="mdc-text-field">
           <input type="text" id="name" class="mdc-text-field__input">
           <label class="mdc-floating-label" for="my-text-field"></label>
@@ -136,7 +182,7 @@
         </div><br>
         Feedback: <br>
         <div class="mdc-text-field mdc-text-field--textarea">
-          <textarea id="feedback_text" class="mdc-text-field__input " rows="8" cols="40" style="background-color:lightgray;"></textarea>
+          <textarea id="feedback_text" class="mdc-text-field__input " rows="8" cols="40" style="background-color:white;"></textarea>
           <div class="mdc-notched-outline">
             <div class="mdc-notched-outline__leading"></div>
             <div class="mdc-notched-outline__notch">
@@ -165,7 +211,7 @@
                   //
                   // Display the result
                   //
-                  alert ("Thank you for the submission  " + submission.name);
+                  alert ("Thank you for the submission " + submission.name);
               }).catch(function(error) {
                  //
                  // Finally don't forget to catch any error
@@ -177,7 +223,7 @@
           });  
       </script>
   </div>
-  <div class="content" id="mapPage">
+  <div class="content" id="map_page">
      <body>
           <div class="mdc-select">
               <i class="mdc-select__dropdown-icon"></i>
@@ -377,7 +423,7 @@
           $(".content").hide();
         }
 
-        $(".nav-link").on("click", function(){
+        $(".mdc-tab").on("click", function(){
           hideScreens();
           var target = $(this).attr("href");
           $(target).show();
